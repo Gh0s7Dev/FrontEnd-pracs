@@ -81,7 +81,7 @@ namespace BibliotecaMVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Autor autor)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(autor);
             }
@@ -96,6 +96,78 @@ namespace BibliotecaMVC.Controllers
             }
 
             _autores.Add(autor);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var autor = _autores.FirstOrDefault(a => a.ID == id);
+
+            if (autor == null)
+            {
+                return NotFound();
+            }
+
+            return View(autor);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Autor autor)
+        {
+            if (id != autor.ID)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(autor);
+            }
+
+            var autorExistente = _autores.FirstOrDefault(a => a.ID == id);
+
+            if (autorExistente == null)
+            {
+                return NotFound();
+            }
+
+            autorExistente.Nombre = autor.Nombre;
+            autorExistente.Apellido = autor.Apellido;
+            autorExistente.Nacionalidad = autor.Nacionalidad;
+            autorExistente.FechaNacimiento = autor.FechaNacimiento;
+            autorExistente.Activo = autor.Activo;
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Autores/Delete/
+        public IActionResult Delete(int id)
+        {
+            var autor = _autores.FirstOrDefault(a => a.ID == id);
+
+            if (autor == null)
+            {
+                return NotFound();
+            }
+
+            return View(autor);
+        }
+
+        // POST: Autores/Delete/
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var autor = _autores.FirstOrDefault(a => a.ID == id);
+
+            if (autor == null)
+            {
+                return NotFound();
+            }
+
+            _autores.Remove(autor);
 
             return RedirectToAction(nameof(Index));
         }

@@ -1,17 +1,19 @@
 ﻿@model BibliotecaMVC.Models.Autor
 
 @{
-    ViewData["Title"] = "Crear Autor";
+    ViewData["Title"] = "Editar Autor";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<form asp-action="Create" method="post">
-   
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="ID" />
+
     <div class="mb-3">
-    <label asp-for="Nombre"></label>
-    <input asp-for="Nombre" class="form-control"/>
-    <span asp-validation-for="Nombre"></span>
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre"></span>
     </div>
 
     <div class="mb-3">
@@ -22,13 +24,13 @@
 
     <div class="mb-3">
         <label asp-for="Nacionalidad"></label>
-        <input asp-for="Nacionalidad" class="form-control"/>
+        <input asp-for="Nacionalidad" class="form-control" />
         <span asp-validation-for="Nacionalidad"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="FechaNacimiento"></label>
-        <input asp-for="FechaNacimiento" type="date" class="form-control"/>
+        <input asp-for="FechaNacimiento" type="date" class="form-control" />
         <span asp-validation-for="FechaNacimiento"></span>
     </div>
 
@@ -38,7 +40,12 @@
         <span asp-validation-for="Activo"></span>
     </div>
 
-    <button type="submit" class="btn btn-success">Crear</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    <button type="submit" class="btn btn-warning">
+        Guardar cambios
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancelar
+    </a>
 
 </form>

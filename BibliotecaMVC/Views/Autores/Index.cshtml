@@ -19,6 +19,8 @@
                     <p>Edad : @(DateTime.Now.Year - autor.FechaNacimiento.Year)</p>
 
                     <a asp-action="Details" asp-route-id="@autor.ID">Ver</a>
+                    <a asp-action="Edit" asp-route-id="@autor.ID">Editar</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@autor.ID">Eliminar</a>
                 </div>
             </div>
         </div>

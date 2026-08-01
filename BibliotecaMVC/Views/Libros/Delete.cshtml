@@ -1,0 +1,43 @@
+﻿@model BibliotecaMVC.Models.Libro
+
+@{
+    ViewData["Title"] = "Eliminar Libro";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>¿Está seguro de que desea eliminar este libro?</h3>
+
+<div class="card mb-3">
+    <div class="card-body">
+
+        <h5>@Model.Titulo</h5>
+
+        <p>
+            <strong>Autor:</strong> @Model.Autor
+        </p>
+
+        <p>
+            <strong>Categoría:</strong> @Model.Categoria
+        </p>
+
+        <p>
+            <strong>Precio:</strong> $@Model.Precio
+        </p>
+
+        <form asp-action="Delete" method="post">
+
+            <input type="hidden" asp-for="ID" />
+
+            <button type="submit" class="btn btn-outline-danger">
+                Sí, eliminar
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Cancelar
+            </a>
+
+        </form>
+
+    </div>
+</div>
